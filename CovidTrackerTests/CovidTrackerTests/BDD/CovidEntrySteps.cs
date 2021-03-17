@@ -31,12 +31,12 @@ namespace CovidTrackerTests.BDD
             CJ_Website.CJ_HomePage.ClickEntryLink();
         }
         
-        [Then(@"the user is directed to the covid entry page")]
+        [Then(@"the user is directed to the covid entry index page")]
         public void ThenTheUserIsDirectedToTheCovidEntryPage()
         {
             Assert.That(CJ_Website.GetPageTitle().Contains("Index - CovidJournal"));
         }
-        [Given(@"the user is on the covid entry page")]
+        [Given(@"the user is on the covid entry index page")]
         public void GivenTheUserIsOnTheCovidEntryPage()
         {
             CJ_Website.CJ_CovidEntriesIndexPage.Navigate();
@@ -53,6 +53,49 @@ namespace CovidTrackerTests.BDD
         {
             Assert.That(CJ_Website.GetPageTitle().Contains("Create - CovidJournal"));
         }
+        [Given(@"the user is on the covid entry create page")]
+        public void GivenTheUserIsOnTheCovidEntryCreatePage()
+        {
+            CJ_Website.CJ_CovidEntriesCreateNewPage.Navigate();
+        }
+
+        [Given(@"the user enters valid journal details")]
+        public void GivenTheUserEntersValidJournalDetails()
+        {
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterDate("10032021");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterTemperature("37.5");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterNote("Feelin fine");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterMood("10");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.TickFatigueBox();
+        }
+        [Given(@"the user enters a date in the future in the journal details")]
+        public void GivenTheUserEntersADateInTheFutureInTheJournalDetails()
+        {
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterDate("10032022");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterTemperature("37.0");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterMood("1");
+
+        }
+
+
+        [When(@"the user clicks the create button")]
+        public void WhenTheUserClicksTheCreateButton()
+        {
+            CJ_Website.CJ_CovidEntriesCreateNewPage.ClickCreateEntryButton();
+        }
+
+        [Then(@"the entry from the same day is present")]
+        public void ThenTheEntryFromTheSameDayIsPresent()
+        {
+            Assert.That(CJ_Website.CJ_CovidEntriesIndexPage.GetTableContents().Contains("10/03/2021"));
+        }
+        [Then(@"an error message is displayed on the create page")]
+        public void ThenAnErrorMessageIsDisplayedOnTheCreatePage()
+        {
+            Assert.That(CJ_Website.CJ_CovidEntriesCreateNewPage.GetDateValidation().Contains("Invalid date"));
+        }
+
+
 
         [AfterScenario]
         public void DisposeWebDriver()

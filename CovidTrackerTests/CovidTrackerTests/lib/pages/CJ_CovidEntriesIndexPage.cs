@@ -11,6 +11,7 @@ namespace CovidTrackerTests.lib.pages
     {
         private IWebDriver _driver;
         private IWebElement _createNewEntryLink => _driver.FindElement(By.XPath("/html/body/div/main/p/a"));
+        private IWebElement _entriesTableBody => _driver.FindElement(By.XPath("/html/body/div/main/table/tbody"));
         public CJ_CovidEntriesIndexPage(IWebDriver driver)
         {
             _driver = driver;
@@ -30,6 +31,10 @@ namespace CovidTrackerTests.lib.pages
         public void ClickNewEntryButton()
         {
             _createNewEntryLink.Click();
+        }
+        public string GetTableContents()
+        {
+            return _entriesTableBody.Text;
         }
     }
 }
