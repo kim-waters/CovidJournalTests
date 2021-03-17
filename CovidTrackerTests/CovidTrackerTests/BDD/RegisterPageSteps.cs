@@ -16,8 +16,6 @@ namespace CovidTrackerTests.BDD
             CJ_Website.CJ_RegisterPage.Navigate();
         }
 
-
-
         [When(@"I click register")]
         public void WhenIClickRegister()
         {
@@ -54,7 +52,6 @@ namespace CovidTrackerTests.BDD
             CJ_Website.CJ_RegisterPage.EnterPasswordConfirmation(p0);
         }
         
-       
         [Then(@"I should be taken to the confirmation page")]
         public void ThenIShouldBeTakenToTheConfirmationPage()
         {
@@ -65,6 +62,19 @@ namespace CovidTrackerTests.BDD
         public void ThenAnErrorMessageShouldBeDisplayedSaying(string p0)
         {
             Assert.That(CJ_Website.CJ_RegisterPage.GetErrorMessages(), Does.Contain(p0));
+        }
+
+        [Then(@"A password error message should be displayed saying ""(.*)""")]
+        public void ThenAPasswordErrorMessageShouldBeDisplayedSaying(string p0)
+        {
+            Assert.That(CJ_Website.CJ_RegisterPage.GetPasswordErrorMessage(), Is.EqualTo("The password and confirmation password do not match."));
+        }
+
+        [AfterScenario]
+        public void DisposeWebDriver()
+        {
+            CJ_Website.Driver.Quit();
+            CJ_Website.Driver.Dispose();
         }
     }
 }

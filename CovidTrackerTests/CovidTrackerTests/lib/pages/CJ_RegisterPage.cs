@@ -19,6 +19,7 @@ namespace CovidTrackerTests.lib.pages
 
         private IWebElement _registerButton => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/form/button"));
         private IWebElement _errorList => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/form/div[1]/ul"));
+        private IWebElement _passConfirmError => _driver.FindElement(By.Id("Input_ConfirmPassword-error"));
 
         public CJ_RegisterPage(IWebDriver driver)
         {
@@ -65,6 +66,12 @@ namespace CovidTrackerTests.lib.pages
         {
             return _errorList.Text;
         }
+
+        public string GetPasswordErrorMessage()
+        {
+            return _passConfirmError.Text;
+        }
+
 
         public static string RandomString(int length)
         {
