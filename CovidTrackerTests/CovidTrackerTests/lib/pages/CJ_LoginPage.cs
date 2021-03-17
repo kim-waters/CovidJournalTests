@@ -14,6 +14,7 @@ namespace CovidTrackerTests.lib.pages
         private IWebElement _usernameField => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[2]/input"));
         private IWebElement _passwordField => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[3]/input"));
         private IWebElement _usernameAlert => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[1]/ul/li"));
+        private IWebElement _invalidLoginAlert => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[1]/ul/li"));
 
         public CJ_LoginPage(IWebDriver driver)
         {
@@ -43,6 +44,17 @@ namespace CovidTrackerTests.lib.pages
         {
             return _usernameAlert.Text;
         }
+
+        public string GetInvalidLoginAlert()
+        {
+            return _invalidLoginAlert.Text;
+        }
+
+        public string GetPageTitle()
+        {
+            return _driver.Title;
+        }
+
     }
 }
 
