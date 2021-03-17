@@ -150,12 +150,5 @@ namespace CovidTrackerTests.BDD
             CJ_Website.Driver.Quit();
             CJ_Website.Driver.Dispose();
         }
-
-        [AfterScenario]
-        public void DisposeWebDriver()
-        {
-            CJ_Website.Driver.Quit();
-            CJ_Website.Driver.Dispose();
-        }
     }
 }
