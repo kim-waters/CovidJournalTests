@@ -1,0 +1,124 @@
+﻿@using System.Linq;
+@using Microsoft.EntityFrameworkCore;
+@using CovidJournal.Methods;
+@using CovidJournal.Models;
+@model IEnumerable<CovidJournal.Models.CovidEntry>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>This is your journal!</h1>
+<h3> Your name is: @ViewBag.CurrentUser.FirstName</h3>
+<h3> You are amazing Mr/Mrs: @ViewBag.CurrentUser.LastName.</h3>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+    @*container for graph*@
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Temperature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mood)
+            </th>
+            <th>
+                Symptoms
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Temperature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mood)
+                </td>
+                <td>
+                    @LinqSymptoms.SymptomsList(item)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EntryId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EntryId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EntryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*Scripts section*@
+@section scripts{
+
+    @*js library for graph*@
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    @*script for filling container*@
+    <script>
+    window.onload = function () {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+	    theme: "light2", // "light1", "light2", "dark1", "dark2"
+	    animationEnabled: true,
+	    zoomEnabled: true,
+	    title: {
+		    text: "Temperature/Mood Graph"
+        },
+        axisX: {
+            title: "Day in Numbers"
+        },
+        axisY: [{
+            title: "Temperature (in °C)",
+            lineThickness: 1
+        },{
+            title: "Mood in (JiTheMegLo scale)",
+            lineThickness: 1
+        }],
+	    data: [{
+            type: "line",
+            name: "Temperature",
+            showInLegend: true,
+            xValueFormatString: "DD MM YYYY",
+            xValueType: "dateTime",
+		    dataPoints: @Html.Raw(ViewBag.temperatureData)
+	    },{
+            type: "line",
+            name: "Mood",
+            showInLegend: true,
+            xValueFormatString: "DD MM YYYY",
+            xValueType: "dateTime",
+		    dataPoints: @Html.Raw(ViewBag.moodData)
+	    }]
+    });
+
+    chart.render();
+    }
+    </script>
+}
+
+
