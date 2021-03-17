@@ -1,4 +1,4 @@
-﻿using CovidTrackerTests.lib.pages;
+using CovidTrackerTests.lib.pages;
 using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
