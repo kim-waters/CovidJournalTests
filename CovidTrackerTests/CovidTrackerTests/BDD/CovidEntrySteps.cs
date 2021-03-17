@@ -33,5 +33,12 @@ namespace CovidTrackerTests.BDD
         {
             ScenarioContext.Current.Pending();
         }
+
+        [AfterScenario]
+        public void DisposeWebDriver()
+        {
+            CJ_Website.Driver.Quit();
+            CJ_Website.Driver.Dispose();
+        }
     }
 }

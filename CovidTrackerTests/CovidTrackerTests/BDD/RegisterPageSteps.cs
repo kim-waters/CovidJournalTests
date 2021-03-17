@@ -16,8 +16,6 @@ namespace CovidTrackerTests.BDD
             CJ_Website.CJ_RegisterPage.Navigate();
         }
 
-
-
         [When(@"I click register")]
         public void WhenIClickRegister()
         {
@@ -65,6 +63,13 @@ namespace CovidTrackerTests.BDD
         public void ThenAnErrorMessageShouldBeDisplayedSaying(string p0)
         {
             Assert.That(CJ_Website.CJ_RegisterPage.GetErrorMessages(), Does.Contain(p0));
+        }
+
+        [AfterScenario]
+        public void DisposeWebDriver()
+        {
+            CJ_Website.Driver.Quit();
+            CJ_Website.Driver.Dispose();
         }
     }
 }
