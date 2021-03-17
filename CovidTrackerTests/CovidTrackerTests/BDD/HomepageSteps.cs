@@ -44,5 +44,12 @@ namespace CovidTrackerTests.BDD
         {
             Assert.That(CJ_Website.GetPageTitle(), Is.EqualTo("Register - CovidJournal"));
         }
+
+        [AfterScenario]
+        public void DisposeWebDriver()
+        {
+            CJ_Website.Driver.Quit();
+            CJ_Website.Driver.Dispose();
+        }
     }
 }
