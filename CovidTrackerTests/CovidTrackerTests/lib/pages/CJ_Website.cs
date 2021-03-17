@@ -13,11 +13,13 @@ namespace CovidTrackerTests.lib.pages
 
         public IWebDriver Driver { get; set; }
         public CJ_HomePage CJ_HomePage { get; internal set; }
+        public CJ_LoginPage CJ_LoginPage { get; internal set; }
 
         public CJ_Website(string driver, int pageLoadInSecs = 10, int implicitWaitInSecs = 10)
         {
             Driver = new SeleniumDriverConfig(driver, pageLoadInSecs, implicitWaitInSecs).Driver;
             CJ_HomePage = new CJ_HomePage(Driver);
+            CJ_LoginPage = new CJ_LoginPage(Driver);
         }
 
         public void DeleteCookies()
