@@ -42,7 +42,16 @@ Scenario: Register with no email
 	When I click register
 	Then An error message should be displayed saying "The Email field is required."
 
-	
+@Register
+Scenario: Register with invalid email
+	Given I am on the register page
+	And I have entered a valid first name
+	And I have entered a valid last name 
+	And I have entered an invalid email "notanemail"
+	And I have entered the password "Password12!"
+	And I have entered the password confirmation "Password12!"
+	When I click register
+	Then An email error message should be displayed saying "The Email field is not a valid e-mail address."	
 @Register
 Scenario: Register with no password
 	Given I am on the register page

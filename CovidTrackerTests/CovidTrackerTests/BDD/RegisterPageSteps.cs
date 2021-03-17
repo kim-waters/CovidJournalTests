@@ -51,7 +51,20 @@ namespace CovidTrackerTests.BDD
         {
             CJ_Website.CJ_RegisterPage.EnterPasswordConfirmation(p0);
         }
-        
+
+        [Given(@"I have entered an invalid email ""(.*)""")]
+        public void GivenIHaveEnteredAnInvalidEmail(string p0)
+        {
+            CJ_Website.CJ_RegisterPage.EnterInvalidEmail(p0);
+        }
+
+        [Then(@"An email error message should be displayed saying ""(.*)""")]
+        public void ThenAnEmailErrorMessageShouldBeDisplayedSaying(string p0)
+        {
+            Assert.That(CJ_Website.CJ_RegisterPage.GetEmailErrorMessage(), Is.EqualTo(p0));
+        }
+
+
         [Then(@"I should be taken to the confirmation page")]
         public void ThenIShouldBeTakenToTheConfirmationPage()
         {

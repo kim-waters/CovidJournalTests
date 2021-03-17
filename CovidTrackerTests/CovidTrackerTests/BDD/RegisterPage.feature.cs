@@ -293,15 +293,15 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register with no password")]
+        [NUnit.Framework.DescriptionAttribute("Register with invalid email")]
         [NUnit.Framework.CategoryAttribute("Register")]
-        public virtual void RegisterWithNoPassword()
+        public virtual void RegisterWithInvalidEmail()
         {
             string[] tagsOfScenario = new string[] {
                     "Register"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with no password", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 47
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with invalid email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -321,37 +321,44 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 48
+#line 47
  testRunner.Given("I am on the register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 49
+#line 48
  testRunner.And("I have entered a valid first name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 50
+#line 49
  testRunner.And("I have entered a valid last name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 50
+ testRunner.And("I have entered an invalid email \"notanemail\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 51
- testRunner.And("I have entered a valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have entered the password \"Password12!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 52
- testRunner.When("I click register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have entered the password confirmation \"Password12!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 53
- testRunner.Then("An error message should be displayed saying \"The Password field is required.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I click register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 54
+ testRunner.Then("An email error message should be displayed saying \"The Email field is not a valid" +
+                        " e-mail address.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register with invalid password")]
+        [NUnit.Framework.DescriptionAttribute("Register with no password")]
         [NUnit.Framework.CategoryAttribute("Register")]
-        public virtual void RegisterWithInvalidPassword()
+        public virtual void RegisterWithNoPassword()
         {
             string[] tagsOfScenario = new string[] {
                     "Register"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with invalid password", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with no password", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -385,32 +392,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I have entered a valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 61
- testRunner.And("I have entered the password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 62
- testRunner.And("I have entered the password confirmation \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 63
  testRunner.When("I click register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 64
- testRunner.Then("An error message should be displayed saying \"Passwords must have at least one non" +
-                        " alphanumeric character.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 62
+ testRunner.Then("An error message should be displayed saying \"The Password field is required.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Register with mismatching passwords")]
+        [NUnit.Framework.DescriptionAttribute("Register with invalid password")]
         [NUnit.Framework.CategoryAttribute("Register")]
-        public virtual void RegisterWithMismatchingPasswords()
+        public virtual void RegisterWithInvalidPassword()
         {
             string[] tagsOfScenario = new string[] {
                     "Register"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with mismatching passwords", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 67
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with invalid password", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 65
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -430,28 +430,86 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 68
+#line 66
  testRunner.Given("I am on the register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 69
+#line 67
  testRunner.And("I have entered a valid first name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 70
+#line 68
  testRunner.And("I have entered a valid last name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 71
+#line 69
  testRunner.And("I have entered a valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 70
+ testRunner.And("I have entered the password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 71
+ testRunner.And("I have entered the password confirmation \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 72
- testRunner.And("I have entered the password \"Password12!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 73
- testRunner.And("I have entered the password confirmation \"Password21!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 74
  testRunner.When("I click register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 75
+#line 73
+ testRunner.Then("An error message should be displayed saying \"Passwords must have at least one non" +
+                        " alphanumeric character.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Register with mismatching passwords")]
+        [NUnit.Framework.CategoryAttribute("Register")]
+        public virtual void RegisterWithMismatchingPasswords()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "Register"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Register with mismatching passwords", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 76
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 77
+ testRunner.Given("I am on the register page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 78
+ testRunner.And("I have entered a valid first name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 79
+ testRunner.And("I have entered a valid last name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 80
+ testRunner.And("I have entered a valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 81
+ testRunner.And("I have entered the password \"Password12!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 82
+ testRunner.And("I have entered the password confirmation \"Password21!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 83
+ testRunner.When("I click register", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 84
  testRunner.Then("A password error message should be displayed saying \"The password and confirmatio" +
                         "n password do not match.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

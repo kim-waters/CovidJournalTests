@@ -13,7 +13,7 @@ namespace CovidTrackerTests.lib.pages
         private IWebElement _firstNameInput => _driver.FindElement(By.Id("Input_FirstName"));
         private IWebElement _lastNameInput => _driver.FindElement(By.Id("Input_LastName"));
         private IWebElement _emailInput => _driver.FindElement(By.Id("Input_Email"));
-
+        private IWebElement _emailError => _driver.FindElement(By.Id("Input_Email-error"));
         private IWebElement _passwordInput => _driver.FindElement(By.Id("Input_Password"));
         private IWebElement _confirmPasswordInput => _driver.FindElement(By.Id("Input_ConfirmPassword"));
 
@@ -46,6 +46,11 @@ namespace CovidTrackerTests.lib.pages
             _emailInput.SendKeys(RandomString(5)+"@mail.com");
         }
 
+        public void EnterInvalidEmail(string email)
+        {
+            _emailInput.SendKeys(email);
+        }
+
         public void EnterPassword(string password)
         {
             _passwordInput.SendKeys(password);
@@ -71,7 +76,11 @@ namespace CovidTrackerTests.lib.pages
         {
             return _passConfirmError.Text;
         }
-
+        
+        public string GetEmailErrorMessage()
+        {
+            return _emailError.Text;
+        }
 
         public static string RandomString(int length)
         {
