@@ -11,10 +11,12 @@ namespace CovidTrackerTests.lib.pages
     {
         private IWebDriver _driver;
         private IWebElement _logInLink => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[5]/button"));
+        private IWebElement _logOutLink => _driver.FindElement(By.XPath("/html/body/header/nav/div/div/ul[2]/li[2]/form/button"));
         private IWebElement _usernameField => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[2]/input"));
         private IWebElement _passwordField => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[3]/input"));
         private IWebElement _usernameAlert => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[1]/ul/li"));
         private IWebElement _invalidLoginAlert => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/section/form/div[1]/ul/li"));
+        private IWebElement _registerLinkWhenLoggedOut => _driver.FindElement(By.XPath("/html/body/header/nav/div/div/ul[2]/li[1]/a"));
 
         public CJ_LoginPage(IWebDriver driver)
         {
@@ -29,6 +31,11 @@ namespace CovidTrackerTests.lib.pages
         public void ClickLogInLink()
         {
             _logInLink.Click();
+        }
+
+        public void ClickLogOutLink()
+        {
+            _logOutLink.Click();
         }
 
         public void EnterUsername(string username)
@@ -48,6 +55,11 @@ namespace CovidTrackerTests.lib.pages
         public string GetInvalidLoginAlert()
         {
             return _invalidLoginAlert.Text;
+        }
+
+        public string GetRegisterLinkWhenLoggedOut()
+        {
+            return _registerLinkWhenLoggedOut.Text;
         }
 
         public string GetPageTitle()
