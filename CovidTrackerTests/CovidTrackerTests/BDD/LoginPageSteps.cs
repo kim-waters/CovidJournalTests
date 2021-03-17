@@ -65,6 +65,11 @@ namespace CovidTrackerTests.BDD
             Assert.That(CJ_Website.CJ_LoginPage.GetPageTitle(), Is.EqualTo("Home Page - CovidJournal"));
         }
 
+        [Given(@"I enter an invalid password")]
+        public void GivenIEnterAnInvalidPassword()
+        {
+            CJ_Website.CJ_LoginPage.EnterPassword("ErrorPassword");
+        }
 
         [AfterScenario]
         public void DisposeWebDriver()
