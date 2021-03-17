@@ -1,4 +1,4 @@
-﻿using CovidTrackerTests.lib.pages;
+using CovidTrackerTests.lib.pages;
 using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
@@ -51,8 +51,33 @@ namespace CovidTrackerTests.BDD
         {
             CJ_Website.CJ_RegisterPage.EnterPasswordConfirmation(p0);
         }
-        
-       
+
+        [Given(@"I have entered an invalid email ""(.*)""")]
+        public void GivenIHaveEnteredAnInvalidEmail(string p0)
+        {
+            CJ_Website.CJ_RegisterPage.EnterInvalidEmail(p0);
+        }
+
+        [When(@"I click the manage link")]
+        public void WhenIClickTheManageLink()
+        {
+            CJ_Website.CJ_HomePage.ClickManageLink();
+        }
+
+        [Then(@"I should be taken to the manage account page")]
+        public void ThenIShouldBeTakenToTheManageAccountPage()
+        {
+            Assert.That(CJ_Website.GetPageTitle(), Is.EqualTo("Profile - CovidJournal"));
+        }
+
+
+        [Then(@"An email error message should be displayed saying ""(.*)""")]
+        public void ThenAnEmailErrorMessageShouldBeDisplayedSaying(string p0)
+        {
+            Assert.That(CJ_Website.CJ_RegisterPage.GetEmailErrorMessage(), Is.EqualTo(p0));
+        }
+
+
         [Then(@"I should be taken to the confirmation page")]
         public void ThenIShouldBeTakenToTheConfirmationPage()
         {
@@ -63,6 +88,12 @@ namespace CovidTrackerTests.BDD
         public void ThenAnErrorMessageShouldBeDisplayedSaying(string p0)
         {
             Assert.That(CJ_Website.CJ_RegisterPage.GetErrorMessages(), Does.Contain(p0));
+        }
+
+        [Then(@"A password error message should be displayed saying ""(.*)""")]
+        public void ThenAPasswordErrorMessageShouldBeDisplayedSaying(string p0)
+        {
+            Assert.That(CJ_Website.CJ_RegisterPage.GetPasswordErrorMessage(), Is.EqualTo("The password and confirmation password do not match."));
         }
 
         [AfterScenario]

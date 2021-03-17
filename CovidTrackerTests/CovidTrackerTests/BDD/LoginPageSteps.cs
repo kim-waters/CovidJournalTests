@@ -83,6 +83,11 @@ namespace CovidTrackerTests.BDD
         public void ThenIAmTakenToTheHomePageAndSignedOut()
         {
             Assert.That(CJ_Website.CJ_LoginPage.GetRegisterLinkWhenLoggedOut().Contains("Register"));
+          
+        [Given(@"I enter an invalid password")]
+        public void GivenIEnterAnInvalidPassword()
+        {
+            CJ_Website.CJ_LoginPage.EnterPassword("ErrorPassword");
         }
 
         [AfterScenario]

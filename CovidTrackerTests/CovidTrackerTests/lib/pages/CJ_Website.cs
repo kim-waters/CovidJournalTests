@@ -18,6 +18,9 @@ namespace CovidTrackerTests.lib.pages
 
         public CJ_LoginPage CJ_LoginPage { get; internal set; }
 
+        public CJ_CovidEntriesIndexPage CJ_CovidEntriesIndexPage { get; internal set; }
+        public CJ_CovidEntriesCreateNewPage CJ_CovidEntriesCreateNewPage { get; internal set; }
+
 
         public CJ_Website(string driver, int pageLoadInSecs = 10, int implicitWaitInSecs = 10)
         {
@@ -28,6 +31,9 @@ namespace CovidTrackerTests.lib.pages
 
             CJ_LoginPage = new CJ_LoginPage(Driver);
 
+            CJ_CovidEntriesIndexPage = new CJ_CovidEntriesIndexPage(Driver);
+
+            CJ_CovidEntriesCreateNewPage = new CJ_CovidEntriesCreateNewPage(Driver);
         }
 
         public void DeleteCookies()

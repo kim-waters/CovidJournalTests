@@ -20,3 +20,5 @@ Scenario: Try to access data while not signed in
 	Given I am on the homepage
 	When I click on the covid entry nav link
 	Then I should be taken to the login page
+
+

@@ -14,6 +14,8 @@ namespace CovidTrackerTests.lib.pages
         private IWebElement _registerLink => _driver.FindElement(By.XPath("/html/body/header/nav/div/div/ul[2]/li[1]/a"));
         private IWebElement _entryLink => _driver.FindElement(By.XPath("/html/body/header/nav/div/div/ul[1]/li/a"));
 
+        private IWebElement _manageLink => _driver.FindElement(By.Id("Manage"));
+
         public CJ_HomePage(IWebDriver driver)
         {
             _driver = driver;
@@ -39,5 +41,9 @@ namespace CovidTrackerTests.lib.pages
             _entryLink.Click();
         }
 
+        public void ClickManageLink()
+        {
+            _manageLink.Click();
+        }
     }
 }
