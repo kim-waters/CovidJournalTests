@@ -20,7 +20,17 @@ namespace CovidTrackerTests.BDD
         {
             CJ_Website.CJ_HomePage.ClickSignInLink();
         }
-        
+
+        [Given(@"the user is logged in")]
+        public void GivenTheUserIsLoggedIn()
+        {
+            CJ_Website.CJ_LoginPage.Navigate();
+            CJ_Website.CJ_LoginPage.EnterUsername("adammcgrane");
+            CJ_Website.CJ_LoginPage.EnterPassword("Adam12!");
+            CJ_Website.CJ_LoginPage.ClickLogInLink();
+        }
+
+
         [When(@"I click on the register nav link")]
         public void WhenIClickOnTheRegisterNavLink()
         {

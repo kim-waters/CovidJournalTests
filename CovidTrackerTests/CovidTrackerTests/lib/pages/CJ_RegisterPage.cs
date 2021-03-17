@@ -13,12 +13,13 @@ namespace CovidTrackerTests.lib.pages
         private IWebElement _firstNameInput => _driver.FindElement(By.Id("Input_FirstName"));
         private IWebElement _lastNameInput => _driver.FindElement(By.Id("Input_LastName"));
         private IWebElement _emailInput => _driver.FindElement(By.Id("Input_Email"));
-
+        private IWebElement _emailError => _driver.FindElement(By.Id("Input_Email-error"));
         private IWebElement _passwordInput => _driver.FindElement(By.Id("Input_Password"));
         private IWebElement _confirmPasswordInput => _driver.FindElement(By.Id("Input_ConfirmPassword"));
 
         private IWebElement _registerButton => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/form/button"));
         private IWebElement _errorList => _driver.FindElement(By.XPath("/html/body/div/main/div/div[1]/form/div[1]/ul"));
+        private IWebElement _passConfirmError => _driver.FindElement(By.Id("Input_ConfirmPassword-error"));
 
         public CJ_RegisterPage(IWebDriver driver)
         {
@@ -45,6 +46,11 @@ namespace CovidTrackerTests.lib.pages
             _emailInput.SendKeys(RandomString(5)+"@mail.com");
         }
 
+        public void EnterInvalidEmail(string email)
+        {
+            _emailInput.SendKeys(email);
+        }
+
         public void EnterPassword(string password)
         {
             _passwordInput.SendKeys(password);
@@ -64,6 +70,16 @@ namespace CovidTrackerTests.lib.pages
         public string GetErrorMessages()
         {
             return _errorList.Text;
+        }
+
+        public string GetPasswordErrorMessage()
+        {
+            return _passConfirmError.Text;
+        }
+        
+        public string GetEmailErrorMessage()
+        {
+            return _emailError.Text;
         }
 
         public static string RandomString(int length)
