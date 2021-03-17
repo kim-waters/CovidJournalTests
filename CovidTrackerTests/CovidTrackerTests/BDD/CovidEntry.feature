@@ -29,3 +29,16 @@ Scenario: Create an invalid entry for a future date
 	And the user enters a date in the future in the journal details
 	When the user clicks the create button
 	Then an error message is displayed on the create page
+
+Scenario: Create entries with different symptoms
+	Given the user is signed in
+	And the user is on the covid entry create page
+	And the user enters journal details with <number> symptoms
+	When the user clicks the create button
+	Then the entry from the same day is present
+	And the correct <number> of symptoms are listed
+Examples: 
+| number |
+| 0      |
+| 1      |
+| 2      |

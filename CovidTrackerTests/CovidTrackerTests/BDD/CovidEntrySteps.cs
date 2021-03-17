@@ -95,6 +95,45 @@ namespace CovidTrackerTests.BDD
             Assert.That(CJ_Website.CJ_CovidEntriesCreateNewPage.GetDateValidation().Contains("Invalid date"));
         }
 
+        [Given(@"the user enters journal details with (.*) symptoms")]
+        public void GivenTheUserEntersJournalDetailsWithSymptoms(int num)
+        {
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterTemperature("37.5");
+            CJ_Website.CJ_CovidEntriesCreateNewPage.EnterMood("10");
+            if (num == 0)
+            {
+                CJ_Website.CJ_CovidEntriesCreateNewPage.EnterDate("01032021");
+            }
+            else if (num == 1)
+            {
+                CJ_Website.CJ_CovidEntriesCreateNewPage.EnterDate("02032021");
+                CJ_Website.CJ_CovidEntriesCreateNewPage.TickFatigueBox();
+            }
+            else if (num == 2)
+            {
+                CJ_Website.CJ_CovidEntriesCreateNewPage.EnterDate("03032021");
+                CJ_Website.CJ_CovidEntriesCreateNewPage.TickFatigueBox();
+                CJ_Website.CJ_CovidEntriesCreateNewPage.TickHeadacheBox();
+            }
+        }
+
+        [Then(@"the correct (.*) of symptoms are listed")]
+        public void ThenTheCorrectSymptomsAreListed(int num)
+        {
+            if (num == 0)
+            {
+                Assert.That(CJ_Website.CJ_CovidEntriesIndexPage.GetTableContents().Contains("01/03/2021 37.5 10 No symptoms"));
+            }
+            else if (num == 1)
+            {
+                Assert.That(CJ_Website.CJ_CovidEntriesIndexPage.GetTableContents().Contains("02/03/2021 37.5 10 Fatigue"));
+            }
+            else if (num == 2)
+            {
+                Assert.That(CJ_Website.CJ_CovidEntriesIndexPage.GetTableContents().Contains("03/03/2021 37.5 10 Headache, Fatigue"));
+            }
+        }
+
 
 
         [AfterScenario]
