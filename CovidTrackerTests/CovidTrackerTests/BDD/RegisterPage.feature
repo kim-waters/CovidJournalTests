@@ -52,6 +52,7 @@ Scenario: Register with invalid email
 	And I have entered the password confirmation "Password12!"
 	When I click register
 	Then An email error message should be displayed saying "The Email field is not a valid e-mail address."	
+
 @Register
 Scenario: Register with no password
 	Given I am on the register page

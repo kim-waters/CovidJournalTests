@@ -58,6 +58,19 @@ namespace CovidTrackerTests.BDD
             CJ_Website.CJ_RegisterPage.EnterInvalidEmail(p0);
         }
 
+        [When(@"I click the manage link")]
+        public void WhenIClickTheManageLink()
+        {
+            CJ_Website.CJ_HomePage.ClickManageLink();
+        }
+
+        [Then(@"I should be taken to the manage account page")]
+        public void ThenIShouldBeTakenToTheManageAccountPage()
+        {
+            Assert.That(CJ_Website.GetPageTitle(), Is.EqualTo("Profile - CovidJournal"));
+        }
+
+
         [Then(@"An email error message should be displayed saying ""(.*)""")]
         public void ThenAnEmailErrorMessageShouldBeDisplayedSaying(string p0)
         {
