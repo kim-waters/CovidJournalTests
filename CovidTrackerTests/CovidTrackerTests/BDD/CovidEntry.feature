@@ -28,7 +28,7 @@ Scenario: Create an invalid entry for a future date
 	And the user is on the covid entry create page
 	And the user enters a date in the future in the journal details
 	When the user clicks the create button
-	Then an error message is displayed on the create page
+	Then an error message about the date is displayed on the create page
 
 Scenario: Create entries with different symptoms
 	Given the user is signed in
@@ -42,3 +42,12 @@ Examples:
 | 0      |
 | 1      |
 | 2      |
+
+Scenario: Create two entries with the same day
+	Given the user is signed in
+	And the user is on the covid entry create page
+	And the user enters valid journal details
+	When the user clicks the create button
+	And the user repeats this proccess with the same date for a new entry
+	Then an error message about the date is displayed on the create page
+

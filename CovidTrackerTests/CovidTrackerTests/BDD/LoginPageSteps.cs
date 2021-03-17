@@ -15,7 +15,7 @@ namespace CovidTrackerTests.BDD
         {
             CJ_Website.CJ_LoginPage.Navigate();
         }
-        
+
         [Given(@"I enter a blank username")]
         public void GivenIEnterABlankUsername()
         {
@@ -83,7 +83,7 @@ namespace CovidTrackerTests.BDD
         public void ThenIAmTakenToTheHomePageAndSignedOut()
         {
             Assert.That(CJ_Website.CJ_LoginPage.GetRegisterLinkWhenLoggedOut().Contains("Register"));
-          
+        }
         [Given(@"I enter an invalid password")]
         public void GivenIEnterAnInvalidPassword()
         {
@@ -97,4 +97,5 @@ namespace CovidTrackerTests.BDD
             CJ_Website.Driver.Dispose();
         }
     }
+        
 }

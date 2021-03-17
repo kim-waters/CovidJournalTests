@@ -89,7 +89,7 @@ namespace CovidTrackerTests.BDD
         {
             Assert.That(CJ_Website.CJ_CovidEntriesIndexPage.GetTableContents().Contains("10/03/2021"));
         }
-        [Then(@"an error message is displayed on the create page")]
+        [Then(@"an error message about the date is displayed on the create page")]
         public void ThenAnErrorMessageIsDisplayedOnTheCreatePage()
         {
             Assert.That(CJ_Website.CJ_CovidEntriesCreateNewPage.GetDateValidation().Contains("Invalid date"));
@@ -134,14 +134,15 @@ namespace CovidTrackerTests.BDD
             }
         }
 
-
-
-        [AfterScenario]
-        public void DisposeWebDriver()
+        [When(@"the user repeats this proccess with the same date for a new entry")]
+        public void WhenTheUserRepeatsThisProccessWithTheSameDateForANewEntry()
         {
-            CJ_Website.Driver.Quit();
-            CJ_Website.Driver.Dispose();
+            CJ_Website.CJ_CovidEntriesCreateNewPage.Navigate();
+            GivenTheUserEntersValidJournalDetails();
+            CJ_Website.CJ_CovidEntriesCreateNewPage.ClickCreateEntryButton();
         }
+
+
 
         [AfterScenario]
         public void DisposeWebDriver()
