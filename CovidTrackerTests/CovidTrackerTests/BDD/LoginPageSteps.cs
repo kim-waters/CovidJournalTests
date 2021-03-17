@@ -39,13 +39,27 @@ namespace CovidTrackerTests.BDD
         {
             CJ_Website.CJ_LoginPage.EnterPassword("Covid?Password!123");
         }
-        
+
+        [Given(@"I sign in using a registered name and password")]
+        public void GivenISignInUsingARegisteredNameAndPassword()
+        {
+            CJ_Website.CJ_LoginPage.EnterUsername("jorisbohnson");
+            CJ_Website.CJ_LoginPage.EnterPassword("Covid?Password!123");
+            CJ_Website.CJ_LoginPage.ClickLogInLink();
+        }
+
         [When(@"the login button is pressed")]
         public void WhenTheLoginButtonIsPressed()
         {
             CJ_Website.CJ_LoginPage.ClickLogInLink();
         }
-        
+
+        [When(@"I click on the Logout button")]
+        public void WhenIClickOnTheLogoutButton()
+        {
+            CJ_Website.CJ_LoginPage.ClickLogOutLink();
+        }
+
         [Then(@"an error message is displayed")]
         public void ThenAnErrorMessageIsDisplayed()
         {
@@ -65,6 +79,11 @@ namespace CovidTrackerTests.BDD
             Assert.That(CJ_Website.CJ_LoginPage.GetPageTitle(), Is.EqualTo("Home Page - CovidJournal"));
         }
 
+        [Then(@"I am taken to the home page and signed out")]
+        public void ThenIAmTakenToTheHomePageAndSignedOut()
+        {
+            Assert.That(CJ_Website.CJ_LoginPage.GetRegisterLinkWhenLoggedOut().Contains("Register"));
+          
         [Given(@"I enter an invalid password")]
         public void GivenIEnterAnInvalidPassword()
         {
